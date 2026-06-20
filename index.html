@@ -392,8 +392,8 @@
 <script>
   // ===================== CONFIG (trocar) =====================
   const AGENDA_URL = "https://cal.com/nexus-ca886u/diagnostico-gratuito"; // Cal.com (ATIVO, conectado ao Google Calendar)
-  const WHATS_NUM  = "5548992003159"; // WhatsApp pro botão flutuante (DDI+DDD+num)
-  const TRACK_URL  = ""; // (opcional) webhook n8n pra logar lead+variação. Ex: https://n8n.nexushealth.com.br/webhook/lead-vsl
+  const WHATS_NUM  = "554891075125"; // WhatsApp pro botão flutuante (DDI+DDD+num)
+  const TRACK_URL  = "https://n8n.nexushealth.com.br/webhook/lp-diagnostico"; // (opcional) webhook n8n pra logar lead+variação. Ex: https://n8n.nexushealth.com.br/webhook/lead-vsl
   // ===========================================================
 
   const params = new URLSearchParams(location.search);
@@ -411,7 +411,7 @@
     var clinica = document.getElementById('clinica').value.trim();
     if(window.fbq){ fbq('track','Lead',{content_name:'diagnostico',campanha:v}); }
     if(TRACK_URL){
-      try{ fetch(TRACK_URL,{method:'POST',headers:{'Content-Type':'application/json'},
+      try{ fetch(TRACK_URL,{method:'POST',keepalive:true,headers:{'Content-Type':'application/json'},
         body:JSON.stringify({nome,whats,clinica,variacao:v,ts:new Date().toISOString()})});}catch(e){}
     }
     var url = AGENDA_URL + (AGENDA_URL.includes('?')?'&':'?') +
