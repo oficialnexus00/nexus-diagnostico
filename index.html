@@ -416,7 +416,7 @@
     }
     var url = AGENDA_URL + (AGENDA_URL.includes('?')?'&':'?') +
               'name='+encodeURIComponent(nome) +
-              '&utm_source=meta&utm_campaign='+encodeURIComponent(v);
+              '&attendeePhoneNumber='+encodeURIComponent(whats)+'&utm_source=meta&utm_campaign='+encodeURIComponent(v);
     window.location.href = url;
   });
 
